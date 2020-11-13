@@ -26,7 +26,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        db.Chirps.post();
+        let chirpObj = {
+            userid: req.body.userid,
+            content: req.body.content,
+            location: "Online"
+        }
+        await db.Chirps.post(chirpObj.userid, chirpObj.content, chirpObj.location);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);
@@ -36,7 +41,11 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        db.Chirps.update(req.params.id);
+        let newChirp = {
+            id: req.params.id,
+            content: req.body.content
+        }
+        await db.Chirps.update(newChirp.id, newChirp.content);
         res.sendStatus(200); 
     } catch (err) {
         console.log(err);

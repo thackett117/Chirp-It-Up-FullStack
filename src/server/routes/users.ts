@@ -26,7 +26,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req,res) => {
     try {
-        db.Users.post();
+        let userObj = {
+            name: req.body.name,
+            email: req.body.email,
+            password: "password"
+        }
+        db.Users.post(userObj.name, userObj.email, userObj.password);
         res.sendStatus(200)
     } catch (err) {
         console.log(err)
@@ -36,7 +41,12 @@ router.post('/', async (req,res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        db.Users.update(req.params.id);
+        let newUser = {
+            id: req.params.id,
+            name: req.body.name,
+            email: req.body.email
+        }
+        db.Users.update(req.params.id, newUser.name, newUser.email);
         res.sendStatus(200)
     } catch (err) {
         console.log(err)

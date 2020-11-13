@@ -7,7 +7,7 @@ const SingleChirp: React.FC<ISingleChirpProps> = (props: ISingleChirpProps) => {
     const [chirp, setChirp] = React.useState<chirp>({
         id: "",
         username: "",
-        message: ""
+        content: ""
     });
 
     React.useEffect(() => {
@@ -32,8 +32,8 @@ const SingleChirp: React.FC<ISingleChirpProps> = (props: ISingleChirpProps) => {
 
     const editChirp = async (id: string) => {
         const newChirp = {
-            username: chirp.username,
-            message: chirp.message
+            username: chirp.name,
+            content: chirp.content
         }
 
         await fetch(`/api/chirps/${id}`, {
@@ -49,8 +49,8 @@ const SingleChirp: React.FC<ISingleChirpProps> = (props: ISingleChirpProps) => {
 
     const onMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setChirp({
         id: chirp.id,
-        username: chirp.username,
-        message: e.target.value
+        username: chirp.userid,
+        content: e.target.value
     });
 
     return (
@@ -61,7 +61,7 @@ const SingleChirp: React.FC<ISingleChirpProps> = (props: ISingleChirpProps) => {
                         <h5 className="card-title">{chirp.username}</h5>
                     </div>
                     <div className="row">
-                        <textarea className="card-text mb-3" defaultValue={chirp.message} cols={140} rows={10} onChange={(e) => onMessageChange(e)}></textarea>
+                        <textarea className="card-text mb-3" defaultValue={chirp.content} cols={140} rows={10} onChange={(e) => onMessageChange(e)}></textarea>
                     </div>
                     <button className="btn btn-sm btn-outline-dark float-right mx-1" onClick={() => editChirp(chirp.id)}>Save Edit</button>
                     <button className="btn btn-sm btn-outline-dark float-right mx-1" onClick={() => deleteChirp(chirp.id)}>Delete Chirp</button>
