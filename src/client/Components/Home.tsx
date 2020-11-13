@@ -25,8 +25,8 @@ const Home: React.FC<IHomeProps> = () => {
             {chirps.map((chirp: chirp) => (
                 <div key={chirp.id} className="card shadow m-2 mb-5">
                 <div className="card-body">
-                    <h5 className="card-title border-bottom pb-3">{chirp.username}</h5>
-                    <p className="card-text">{chirp.message}</p>
+                    <h5 className="card-title border-bottom pb-3">{chirp.userid}</h5>
+                    <p className="card-text">{chirp.content}</p>
                     <Link to={`/chirp/${chirp.id}/admin`}>
                         <button className="btn btn-sm btn-outline-secondary float-right">Admin Options</button>
                     </Link>
