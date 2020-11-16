@@ -58,7 +58,7 @@ const SingleChirp: React.FC<ISingleChirpProps> = (props: ISingleChirpProps) => {
             <div className="card shadow m-2 pl-3">
                 <div className="card-body">
                     <div className="row">
-                        <h5 className="card-title">{chirp.username}</h5>
+                        <h5 className="card-title">{chirp.name}</h5>
                     </div>
                     <div className="row">
                         <textarea className="card-text mb-3" defaultValue={chirp.content} cols={140} rows={10} onChange={(e) => onMessageChange(e)}></textarea>
